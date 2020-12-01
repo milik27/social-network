@@ -1,6 +1,7 @@
 {
   "name": "social-network",
   "version": "0.1.0",
+  "author": "Nikita<nikitati27@gmail.com>",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.9",
