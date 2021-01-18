@@ -70,7 +70,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint src/**/* --ext .ts,.tsx --fix"
+    "lint": "eslint src/**/* --ext .ts,.tsx --fix",
+    "install": "npm run build"
   },
   "eslintConfig": {
     "extends": [
