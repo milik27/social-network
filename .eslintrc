@@ -1,0 +1,89 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb-typescript",
+        "prettier",
+        "prettier/react",
+        "airbnb/hooks"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "test": "readonly",
+        "expect": "readonly",
+        "describe": "readonly",
+        "it": "readonly",
+        "jest": "readonly",
+        "cy": "readonly",
+        "beforeEach": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import",
+        "prettier",
+        "react-hooks"
+    ],
+    "rules": {
+        "max-len": [
+            "error",
+            120,
+            2,
+            {
+                "ignoreUrls": true,
+                "ignoreComments": false,
+                "ignoreRegExpLiterals": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true
+            }
+        ],
+        "import/no-extraneous-dependencies": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "object-curly-newline": "off",
+        "import/prefer-default-export": "off",
+        "function-paren-newline": "off",
+        "no-unused-expressions": "off",
+        "no-irregular-whitespace": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "react/destructuring-assignment": "off",
+        "react/jsx-filename-extension": "off",
+        "react/state-in-constructor": "off",
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/dot-notation": 0,
+        "@typescript-eslint/keyword-spacing": 0,
+        "@typescript-eslint/lines-between-class-members": 0,
+        "@typescript-eslint/no-redeclare": 0,
+        "@typescript-eslint/no-shadow": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "semi": [
+            1,
+            "never"
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/jsx-props-no-spreading": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "all",
+                "singleQuote": true,
+                "printWidth": 120,
+                "semi": false
+            }
+        ]
+    }
+}
