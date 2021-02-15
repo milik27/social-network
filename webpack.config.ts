@@ -2,7 +2,7 @@ import webpack from "webpack"
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
-import { build } from './config/paths'
+import { build, srcPath } from './config/paths'
 
 const config: webpack.Configuration = {
   entry: "./src/index.tsx",
@@ -27,7 +27,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      '@src': './src',
+      '@src': srcPath,
     },
   },
   output: {
@@ -39,19 +39,20 @@ const config: webpack.Configuration = {
       template: './public/index.html',
       hash: false,
     }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-      eslint: {
-        files: "./src/**/*",
-      },
-    }),
+    new ForkTsCheckerWebpackPlugin(),
     new Dotenv(),
   ],
   devServer: {
     contentBase: build,
-    compress: true,
-    port: 3000,
+    port: 3001,
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
+    disableHostCheck: true,
+    historyApiFallback: true,
   },
+  devtool: 'inline-source-map'
 }
 
 export default config

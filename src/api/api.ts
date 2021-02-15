@@ -2,9 +2,9 @@ import axios from 'axios'
 
 export const instance = axios.create({
   withCredentials: true,
-  baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+  baseURL: process.env.API_URL,
   headers: {
-    'API-KEY': '1b3a19eb-954e-40d8-a1b9-e3f5192c09ad',
+    'API-KEY': process.env.API_KEY,
   },
 })
 
@@ -16,7 +16,7 @@ export enum ResultCodeForCapctha {
   CaptchaIsRequired = 10,
 }
 
-export type DefaultResponseType<D = {}, RC = ResultCodeEnum> = {
+export type DefaultResponseType<D = never, RC = ResultCodeEnum> = {
   resultCode: RC
   messages: Array<string>
   data: D

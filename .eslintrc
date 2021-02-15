@@ -34,18 +34,34 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "max-len": [
+      "error",
+      120,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
     "linebreak-style": "off",
     "semi": [1, "never"],
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["store"] }],
+    "react/jsx-props-no-spreading": ["error", {"custom": "ignore"}],
+    "react/prop-types": "off",
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto",
         "semi": false,
-        "singleQuote": true
+        "singleQuote": true,
+        "printWidth": 120
       }
     ]
   }
