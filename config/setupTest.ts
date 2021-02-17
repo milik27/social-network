@@ -1,5 +1,7 @@
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+// todo
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+import 'jest-styled-components'
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() })

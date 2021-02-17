@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 import { lighten, darken } from 'polished'
 
-const Btn = styled.button<ButtonProps>`
+export const Btn = styled.button<ButtonProps>`
   border: 2px solid ${({ theme }) => theme.palette.primary.medium};
   background-color: ${({ theme, outline }) => (outline ? 'transparent' : theme.palette.primary.medium)};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -45,7 +45,7 @@ export type ButtonProps = {
   onClick?: () => void
 }
 // TODO add loading
-export const Button: FC<ButtonProps> = ({ children, disabled, outline, size = 'medium', ...props }) => {
+export const Button: FC<ButtonProps> = ({ children, disabled, outline, size, ...props }) => {
   return (
     <Btn outline={outline} size={size} disabled={disabled} {...props} type="button">
       {children}

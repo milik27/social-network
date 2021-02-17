@@ -25,7 +25,8 @@
     "src"
   ],
   "files": [
-    "config/setupTest.ts"
+    "config/setupTest.ts",
+    "jest.config.ts"
   ],
   "exclude": [
     "node_modules",
