@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { BaseThunkType, RootState } from '@src/store/type'
 
 const initialState = {
   initialized: false,
@@ -15,14 +14,6 @@ const appReducer = createSlice({
   },
 })
 
-const { initializedSuccess } = appReducer.actions
-
-export const initializeApp = (): BaseThunkType => (dispatch) => {
-  setTimeout(() => {
-    dispatch(initializedSuccess())
-  }, 1000)
-}
-
-export const isInitialized = (state: RootState): boolean => state.app.initialized
+export const { initializedSuccess } = appReducer.actions
 
 export default appReducer.reducer

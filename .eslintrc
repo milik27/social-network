@@ -55,6 +55,7 @@
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["store"] }],
     "react/jsx-props-no-spreading": ["error", {"custom": "ignore"}],
     "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "prettier/prettier": [
       "error",
       {
