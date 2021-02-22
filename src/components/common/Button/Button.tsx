@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import { lighten, darken } from 'polished'
+import Spinner from '@src/assets/spinner.svg'
 
 export const Btn = styled.button<ButtonProps>`
   border: 2px solid ${({ theme }) => theme.palette.primary.medium};
@@ -10,6 +11,7 @@ export const Btn = styled.button<ButtonProps>`
   cursor: pointer;
   font-size: inherit;
   transition-duration: 0.3s;
+  position: relative;
   padding: ${({ size }) => {
     switch (size) {
       case 'small':
@@ -24,17 +26,27 @@ export const Btn = styled.button<ButtonProps>`
   }};
 
   &:hover {
-    border: 2px solid ${({ theme, outline }) => darken(outline ? 0 : 0.1, theme.palette.primary.medium)};
-    background-color: ${({ theme, outline }) => darken(outline ? 0 : 0.1, theme.palette.primary.medium)};
+    border: 2px solid ${({ theme, outline }) => darken(outline ? 0 : 0.2, theme.palette.primary.medium)};
+    background-color: ${({ theme, outline }) => darken(outline ? 0 : 0.2, theme.palette.primary.medium)};
     color: ${({ theme }) => theme.palette.common.white};
   }
 
   &:disabled {
-    border: 2px solid ${({ theme }) => lighten(0.1, theme.palette.primary.medium)};
-    background-color: ${({ theme }) => lighten(0.1, theme.palette.primary.medium)};
-    color: ${({ theme }) => theme.palette.common.white};
+    border: 2px solid ${({ theme }) => lighten(0.2, theme.palette.primary.medium)};
+    background-color: ${({ theme, outline }) => (outline ? 'transparent' : lighten(0.2, theme.palette.primary.medium))};
+    color: ${({ theme, outline }) =>
+      outline ? lighten(0.2, theme.palette.primary.medium) : theme.palette.common.white};
     cursor: not-allowed;
   }
+`
+
+const RollingContainer = styled(Spinner)<ButtonProps>`
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
+  stroke: ${({ outline, theme }) => (outline ? theme.palette.primary.medium : theme.palette.common.white)};
 `
 
 export type ButtonProps = {
@@ -44,10 +56,11 @@ export type ButtonProps = {
   loading?: boolean
   onClick?: () => void
 }
-// TODO add loading
-export const Button: FC<ButtonProps> = ({ children, disabled, outline, size, ...props }) => {
+
+export const Button: FC<ButtonProps> = ({ children, loading, disabled, outline, size, ...props }) => {
   return (
-    <Btn outline={outline} size={size} disabled={disabled} {...props} type="button">
+    <Btn outline={outline} size={size} disabled={disabled || loading} {...props} type="button">
+      {loading && <RollingContainer outline={outline} />}
       {children}
     </Btn>
   )
