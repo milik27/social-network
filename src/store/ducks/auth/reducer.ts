@@ -30,6 +30,8 @@ const authReducer = createSlice({
   },
 })
 
+export type AuthStateType = typeof initialState
+
 export const { setUserData, deleteUserData } = authReducer.actions
 
 export default authReducer.reducer

@@ -4,6 +4,7 @@ import { AppDispatch } from '@src/store/type'
 import { initializeApp } from '@src/store/ducks/app/thunks'
 import { Preloader } from '@src/components/common/Preloader/Preloader'
 import { selectApp, selectAppStatusError } from '@src/store/ducks/app/selectors'
+import { Routes } from '@src/routes/Routes'
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -19,7 +20,7 @@ export const App: FC = () => {
   return (
     <div className="App">
       <Preloader loading={!app.initialized} center height="100vh">
-        123
+        <Routes />
       </Preloader>
     </div>
   )
