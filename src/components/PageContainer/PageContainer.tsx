@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import { LeftPanel } from '@src/components/common/LeftPanel/LeftPanel'
+import { LeftPanel } from '@src/components/PageContainer/LeftPanel/LeftPanel'
+import { Header } from '@src/components/Header/Header'
 
 const Body = styled.div`
   max-width: 1200px;
@@ -14,13 +15,16 @@ const Main = styled.main`
 
 const ContentBox = styled.div`
   flex: 1;
-  padding-left: 10px;
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  background-color: ${({ theme }) => theme.palette.background.medium};
 `
 
 export const PageContainer: FC = ({ children }) => {
   return (
     <Body>
-      <header>header</header>
+      <Header />
       <Main>
         <LeftPanel />
         <ContentBox>{children}</ContentBox>

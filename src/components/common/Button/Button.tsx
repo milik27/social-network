@@ -26,8 +26,8 @@ export const Btn = styled.button<ButtonProps>`
   }};
 
   &:hover {
-    border: 2px solid ${({ theme, outline }) => darken(outline ? 0 : 0.2, theme.palette.primary.medium)};
-    background-color: ${({ theme, outline }) => darken(outline ? 0 : 0.2, theme.palette.primary.medium)};
+    border: 2px solid ${({ theme, outline }) => darken(outline ? 0 : 0.1, theme.palette.primary.medium)};
+    background-color: ${({ theme, outline }) => darken(outline ? 0 : 0.1, theme.palette.primary.medium)};
     color: ${({ theme }) => theme.palette.common.white};
   }
 

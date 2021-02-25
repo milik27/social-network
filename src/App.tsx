@@ -5,7 +5,7 @@ import { initializeApp } from '@src/store/ducks/app/thunks'
 import { Preloader } from '@src/components/common/Preloader/Preloader'
 import { selectApp, selectAppStatusError } from '@src/store/ducks/app/selectors'
 import { Routes } from '@src/routes/Routes'
-import { PageContainer } from '@src/components/common/PageContainer/PageContainer'
+import { PageContainer } from '@src/components/PageContainer/PageContainer'
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>()

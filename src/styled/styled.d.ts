@@ -16,6 +16,7 @@ declare module 'styled-components' {
         black: string
         white: string
         text: string
+        invertText: string
       }
       background: Palette
       primary: Palette

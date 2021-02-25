@@ -27,10 +27,12 @@ const Wrapper = styled.aside<WrapperProps>`
     return menuWidth
   }}px;
   position: sticky;
-  top: 0;
+  top: 65px;
   left: 0;
   background-color: ${({ theme }) => theme.palette.background.medium};
   overflow: hidden;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  height: fit-content;
 `
 
 const Item = styled(NavLink)<{ disabled: boolean }>`

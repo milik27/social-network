@@ -9,6 +9,7 @@ export const defaultTheme: DefaultTheme = {
       black: '#222831',
       white: '#ffffff',
       text: '#ffffff',
+      invertText: '#212121',
     },
     primary: {
       dark: '',
@@ -20,7 +21,7 @@ export const defaultTheme: DefaultTheme = {
       dark: '#181818',
       medium: '#333333',
       light: '',
-      lighter: '',
+      lighter: '#C4C4C4',
     },
     secondary: {
       dark: '',
