@@ -19,6 +19,7 @@ export enum ResultCodeForCaptcha {
 export type DefaultResponseType<D = never, RC = ResultCodeEnum> = {
   resultCode: RC
   messages: Array<string>
+  fieldsErrors: Array<any>
   data: D
 }
 export type GetItemsType<I> = {

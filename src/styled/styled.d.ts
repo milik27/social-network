@@ -15,6 +15,7 @@ declare module 'styled-components' {
       common: {
         black: string
         white: string
+        gray: string
         text: string
         invertText: string
       }

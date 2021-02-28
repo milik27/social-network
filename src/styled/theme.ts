@@ -8,6 +8,7 @@ export const defaultTheme: DefaultTheme = {
     common: {
       black: '#222831',
       white: '#ffffff',
+      gray: '#b7b7b7',
       text: '#ffffff',
       invertText: '#212121',
     },

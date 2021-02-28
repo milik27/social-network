@@ -3,11 +3,18 @@ import styled from 'styled-components'
 import { lighten, darken } from 'polished'
 import Spinner from '@src/assets/spinner.svg'
 
-export const Btn = styled.button<ButtonProps>`
+export type BtnProps = {
+  $outline?: boolean
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  loading?: boolean
+}
+
+export const Btn = styled.button<BtnProps>`
   border: 2px solid ${({ theme }) => theme.palette.primary.medium};
-  background-color: ${({ theme, outline }) => (outline ? 'transparent' : theme.palette.primary.medium)};
+  background-color: ${({ theme, $outline }) => ($outline ? 'transparent' : theme.palette.primary.medium)};
   border-radius: ${({ theme }) => theme.borderRadius};
-  color: ${({ theme, outline }) => (outline ? theme.palette.primary.medium : theme.palette.common.white)};
+  color: ${({ theme, $outline }) => ($outline ? theme.palette.primary.medium : theme.palette.common.white)};
   cursor: pointer;
   font-size: inherit;
   transition-duration: 0.3s;
@@ -26,27 +33,28 @@ export const Btn = styled.button<ButtonProps>`
   }};
 
   &:hover {
-    border: 2px solid ${({ theme, outline }) => darken(outline ? 0 : 0.1, theme.palette.primary.medium)};
-    background-color: ${({ theme, outline }) => darken(outline ? 0 : 0.1, theme.palette.primary.medium)};
+    border: 2px solid ${({ theme, $outline }) => darken($outline ? 0 : 0.1, theme.palette.primary.medium)};
+    background-color: ${({ theme, $outline }) => darken($outline ? 0 : 0.1, theme.palette.primary.medium)};
     color: ${({ theme }) => theme.palette.common.white};
   }
 
   &:disabled {
     border: 2px solid ${({ theme }) => lighten(0.2, theme.palette.primary.medium)};
-    background-color: ${({ theme, outline }) => (outline ? 'transparent' : lighten(0.2, theme.palette.primary.medium))};
-    color: ${({ theme, outline }) =>
-      outline ? lighten(0.2, theme.palette.primary.medium) : theme.palette.common.white};
+    background-color: ${({ theme, $outline }) =>
+      $outline ? 'transparent' : lighten(0.2, theme.palette.primary.medium)};
+    color: ${({ theme, $outline }) =>
+      $outline ? lighten(0.2, theme.palette.primary.medium) : theme.palette.common.white};
     cursor: not-allowed;
   }
 `
 
-const RollingContainer = styled(Spinner)<ButtonProps>`
+const RollingContainer = styled(Spinner)<BtnProps>`
   width: 1.5em;
   height: 1.5em;
   position: absolute;
   top: calc(50% - 12px);
   left: calc(50% - 12px);
-  stroke: ${({ outline, theme }) => (outline ? theme.palette.primary.medium : theme.palette.common.white)};
+  stroke: ${({ $outline, theme }) => ($outline ? theme.palette.primary.medium : theme.palette.common.white)};
 `
 
 export type ButtonProps = {
@@ -59,8 +67,8 @@ export type ButtonProps = {
 
 export const Button: FC<ButtonProps> = ({ children, loading, disabled, outline, size, ...props }) => {
   return (
-    <Btn outline={outline} size={size} disabled={disabled || loading} {...props} type="button">
-      {loading && <RollingContainer outline={outline} />}
+    <Btn $outline={outline} size={size} disabled={disabled || loading} {...props} type="button">
+      {loading && <RollingContainer $outline={outline} />}
       {children}
     </Btn>
   )
