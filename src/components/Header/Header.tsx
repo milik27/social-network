@@ -15,6 +15,7 @@ const Wrapper = styled.header`
   align-items: center;
   padding: 0 10px;
   border-radius: ${({ theme }) => `0 0 ${theme.borderRadius} ${theme.borderRadius}`};
+  z-index: 10;
 `
 
 const Logo = styled.div`
