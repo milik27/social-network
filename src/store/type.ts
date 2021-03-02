@@ -1,7 +1,8 @@
-import { rootStore } from '@src/store/rootStore'
+import { configureAppStore } from '@src/store/rootStore'
 
-export type RootState = ReturnType<typeof rootStore.getState>
-export type AppDispatch = typeof rootStore.dispatch
+const store = configureAppStore()
+
+export type AppDispatch = typeof store.dispatch
 export type BaseThunkType = (dispatch: AppDispatch) => void
 export enum StatusEnum {
   NEWER = 'newer',

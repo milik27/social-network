@@ -1,16 +1,29 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import appReducer from '@src/store/ducks/app/reducer'
-import authReducer from '@src/store/ducks/auth/reducer'
-import usersReducer from '@src/store/ducks/users/reducer'
+import createSagaMiddleware from 'redux-saga'
+import { createInjectorsEnhancer } from 'redux-injectors'
+import { createReducer } from '@src/store/reducers'
 
-const middleware = getDefaultMiddleware({
-  immutableCheck: false,
-  serializableCheck: false,
-  thunk: true,
-})
+export const configureAppStore = () => {
+  const reduxSagaMonitorOptions = {}
+  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions)
+  const { run: runSaga } = sagaMiddleware
 
-export const rootStore = configureStore({
-  reducer: { app: appReducer, auth: authReducer, users: usersReducer },
-  middleware,
-  devTools: process.env.NODE_ENV !== 'production',
-})
+  // Create the store with saga middleware
+  const middleware = [sagaMiddleware]
+
+  const enhancers = [
+    createInjectorsEnhancer({
+      createReducer,
+      runSaga,
+    }),
+  ]
+
+  const store = configureStore({
+    reducer: createReducer(),
+    middleware: [...getDefaultMiddleware(), ...middleware],
+    devTools: process.env.NODE_ENV !== 'production',
+    enhancers,
+  })
+
+  return store
+}
