@@ -1,3 +1,4 @@
+/*
 import { BaseThunkType, StatusEnum } from '@src/store/type'
 import { usersAPI } from '@src/api/users-api'
 import { ResultCodeEnum } from '@src/api/api'
@@ -57,3 +58,5 @@ const unFollowThunk = (id: number): BaseThunkType => async (dispatch) => {
 }
 
 export { getUsersThunk, unFollowThunk, followThunk }
+*/
+export {}

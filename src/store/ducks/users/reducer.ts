@@ -1,8 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@src/utils/@reduxjs/toolkit'
 import { UserType } from '@src/types/users'
 import { StatusEnum } from '@src/store/type'
+import { useInjectReducer, useInjectSaga } from '@src/utils/redux-injectors'
+import { usersSaga } from '@src/store/ducks/users/saga'
 
-const initialState = {
+export type FollowPayloadAction = PayloadAction<number>
+
+export const initialState = {
   users: [] as Array<UserType>,
   totalUserCount: 0,
   pageSize: 50,
@@ -12,7 +17,7 @@ const initialState = {
   status: StatusEnum.NEWER as StatusEnum,
 }
 
-const usersReducer = createSlice({
+const slice = createSlice({
   name: 'users',
   initialState,
   reducers: {
@@ -28,7 +33,10 @@ const usersReducer = createSlice({
     setCurrentPage: (store, { payload }: PayloadAction<number>) => {
       store.currentPage = payload
     },
-    addFollowingInProgress: (store, { payload }: PayloadAction<number>) => {
+    userFollow: (store, { payload }: FollowPayloadAction) => {
+      store.followingInProgress = [...store.followingInProgress, payload]
+    },
+    userUnfollow: (store, { payload }: FollowPayloadAction) => {
       store.followingInProgress = [...store.followingInProgress, payload]
     },
     removeFollowingInProgress: (store, { payload }: PayloadAction<number>) => {
@@ -37,19 +45,18 @@ const usersReducer = createSlice({
     toggleFollowStatus: (store, { payload }: PayloadAction<{ id: number; status: boolean }>) => {
       store.users = store.users.map((user) => (user.id === payload.id ? { ...user, followed: payload.status } : user))
     },
+    getUsers: (store) => {
+      store.status = StatusEnum.LOADING
+    },
   },
 })
 
 export type UsersStateType = typeof initialState
 
-export const {
-  setUsersStatus,
-  setUsers,
-  setCurrentPage,
-  setTotalUserCount,
-  addFollowingInProgress,
-  removeFollowingInProgress,
-  toggleFollowStatus,
-} = usersReducer.actions
+export const { actions: usersActions, reducer } = slice
 
-export default usersReducer.reducer
+export const useUsersSlice = () => {
+  useInjectReducer({ key: slice.name, reducer: slice.reducer })
+  useInjectSaga({ key: slice.name, saga: usersSaga })
+  return { actions: slice.actions }
+}

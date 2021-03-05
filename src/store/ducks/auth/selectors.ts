@@ -1,6 +1,11 @@
-import { RootState } from '@src/store/type'
-import { AuthStateType } from '@src/store/ducks/auth/reducer'
+import { RootState } from '@src/types/RootState'
+import { StatusEnum } from '@src/store/type'
+import { initialState } from './reducer'
 
-const selectAuth = (state: RootState): AuthStateType => state.auth
+const selectAuth = (state: RootState) => state.auth || initialState
+const selectAuthStatus = (state: RootState) => selectAuth(state).status
 
-export { selectAuth }
+const selectAuthStatusError = (state: RootState) => selectAuthStatus(state) === StatusEnum.ERROR
+const selectAuthStatusLoaded = (state: RootState) => selectAuthStatus(state) === StatusEnum.LOADED
+
+export { selectAuth, selectAuthStatusError, selectAuthStatusLoaded }

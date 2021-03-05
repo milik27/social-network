@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { Button } from '@src/components/common/Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch } from '@src/store/type'
-import { followThunk, unFollowThunk } from '@src/store/ducks/users/thunks'
+import { usersActions } from '@src/store/ducks/users/reducer'
 import DefaultAvatar from '@src/assets/defaultAvatar.svg'
 import { selectUsersFollowingInProgress } from '@src/store/ducks/users/selectors'
 
@@ -50,9 +50,9 @@ export const User: FC<UserProps> = ({ name, photos, status, followed, id }) => {
 
   const toggleFollow = useCallback(() => {
     if (!followed) {
-      dispatch(followThunk(id))
+      dispatch(usersActions.userFollow(id))
     } else {
-      dispatch(unFollowThunk(id))
+      dispatch(usersActions.userUnfollow(id))
     }
   }, [dispatch, followed, id])
 
