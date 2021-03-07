@@ -13,9 +13,10 @@ const jest = {
   snapshotSerializers: ['./node_modules/enzyme-to-json/serializer'],
   transform: {
     '^.+\\.ts$': 'babel-jest',
+    '\\.svg$': '<rootDir>/__mocks__/svgTransform.ts',
   },
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': './__mocks__/fileMock.ts',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': './__mocks__/fileMock.ts',
     '\\.(css|scss)$': 'identity-obj-proxy',
     '^@src(.*)$': '<rootDir>/src$1',
   },
