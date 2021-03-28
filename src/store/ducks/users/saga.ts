@@ -7,11 +7,11 @@ import { selectUsersCurrentPage, selectUsersPageSize } from '@src/store/ducks/us
 import { ResultCodeEnum } from '@src/api/api'
 import { FollowPayloadAction, usersActions as actions } from './reducer'
 
-function* getUsers(): SagaIterator {
+export function* getUsers(): SagaIterator {
   try {
     const count: ReturnType<typeof selectUsersPageSize> = yield select(selectUsersPageSize)
     const page: ReturnType<typeof selectUsersCurrentPage> = yield select(selectUsersCurrentPage)
-    const res: CallReturnType<typeof usersAPI.getUsers> = yield call(() => usersAPI.getUsers(count, page))
+    const res: CallReturnType<typeof usersAPI.getUsers> = yield call(usersAPI.getUsers, count, page)
     yield put(actions.setUsers(res.items))
     yield put(actions.setTotalUserCount(res.totalCount))
     yield put(actions.setUsersStatus(StatusEnum.LOADED))
@@ -20,7 +20,7 @@ function* getUsers(): SagaIterator {
   }
 }
 
-function* userFollow({ payload }: FollowPayloadAction): SagaIterator {
+export function* userFollow({ payload }: FollowPayloadAction): SagaIterator {
   try {
     const res: CallReturnType<typeof usersAPI.follow> = yield call(() => usersAPI.follow(payload))
     yield put(actions.removeFollowingInProgress(payload))

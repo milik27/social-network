@@ -5,7 +5,7 @@ import { SagaIterator } from 'redux-saga'
 import { StatusEnum } from '@src/store/type'
 import { authActions as actions } from './reducer'
 
-function* getUserData(): SagaIterator {
+export function* getUserData(): SagaIterator {
   try {
     const res: CallReturnType<typeof authAPI.getAuth> = yield call(authAPI.getAuth)
     const { id, email, login } = res.data

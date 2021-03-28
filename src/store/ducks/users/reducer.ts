@@ -40,12 +40,12 @@ const slice = createSlice({
       store.followingInProgress = [...store.followingInProgress, payload]
     },
     removeFollowingInProgress: (store, { payload }: PayloadAction<number>) => {
-      store.followingInProgress = store.followingInProgress.filter((item) => item !== payload)
+      store.followingInProgress = store.followingInProgress.filter(item => item !== payload)
     },
     toggleFollowStatus: (store, { payload }: PayloadAction<{ id: number; status: boolean }>) => {
-      store.users = store.users.map((user) => (user.id === payload.id ? { ...user, followed: payload.status } : user))
+      store.users = store.users.map(user => (user.id === payload.id ? { ...user, followed: payload.status } : user))
     },
-    getUsers: (store) => {
+    getUsers: store => {
       store.status = StatusEnum.LOADING
     },
   },

@@ -2,6 +2,7 @@ import Enzyme from 'enzyme'
 // todo
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 import 'jest-styled-components'
+import 'redux-saga-test-plan'
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() })
