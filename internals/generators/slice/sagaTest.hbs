@@ -1,0 +1,9 @@
+import { takeLatest } from 'redux-saga/effects'
+import { {{ camelCase sliceName }}Saga } from '../saga'
+
+describe('{{ camelCase sliceName }}Saga Saga', () => {
+  const {{ camelCase sliceName }}Iterator = {{ camelCase sliceName }}Saga()
+  it('should start task to watch for loadRepos action', () => {
+    const takeLatestDescriptor = {{ camelCase sliceName }}Iterator.next().value
+  })
+})

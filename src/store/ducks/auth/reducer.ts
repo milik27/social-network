@@ -26,13 +26,13 @@ const slice = createSlice({
       store.login = payload.login
       store.isAuth = true
     },
-    deleteUserData: (store) => {
+    deleteUserData: store => {
       store.email = null
       store.userId = null
       store.login = null
       store.isAuth = false
     },
-    getUserData: (store) => {
+    getUserData: store => {
       store.status = StatusEnum.LOADING
     },
     setAuthStatus: (store, { payload }: PayloadAction<StatusEnum>) => {

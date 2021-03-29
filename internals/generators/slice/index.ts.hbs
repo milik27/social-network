@@ -19,7 +19,7 @@ const slice = createSlice({
 
 export type {{ properCase sliceName }}StateType = typeof initialState
 
-export const { actions: {{ camelCase sliceName }}Actions } = slice
+export const { actions: {{ camelCase sliceName }}Actions, reducer } = slice
 
 export const use{{ properCase sliceName }}Slice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer })

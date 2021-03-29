@@ -36,7 +36,7 @@ export const sliceGenerator: PlopGeneratorConfig = {
       message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
     },
   ],
-  actions: (data) => {
+  actions: data => {
     const answers = data as Answers
 
     const slicePath = `${baseGeneratorPath}/store/ducks/${answers.sliceName}`
@@ -72,11 +72,23 @@ export const sliceGenerator: PlopGeneratorConfig = {
       templateFile: './slice/appendRootState.hbs',
       abortOnFail: true,
     })
+    actions.push({
+      type: 'add',
+      path: `${slicePath}/__tests__/reducer.test.ts`,
+      templateFile: './slice/reducerTest.hbs',
+      abortOnFail: true,
+    })
     if (answers.wantSaga) {
       actions.push({
         type: 'add',
         path: `${slicePath}/saga.ts`,
         templateFile: './slice/saga.ts.hbs',
+        abortOnFail: true,
+      })
+      actions.push({
+        type: 'add',
+        path: `${slicePath}/__tests__/saga.test.ts`,
+        templateFile: './slice/sagaTest.hbs',
         abortOnFail: true,
       })
     }

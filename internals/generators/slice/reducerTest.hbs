@@ -1,0 +1,20 @@
+import { {{ properCase sliceName }}StateType } from '@src/store/ducks/{{ camelCase sliceName }}/reducer'
+import * as slice from '../reducer'
+
+describe('{{ camelCase sliceName }} reducer', () => {
+  let state: {{ properCase sliceName }}StateType
+
+  beforeEach(() => {
+    state = slice.initialState
+  })
+
+  it('should return the initial state', () => {
+    expect(slice.reducer(undefined, { type: '' })).toEqual(state)
+  })
+
+  it('should handle someAction', () => {
+    expect(slice.reducer(state, slice.{{ camelCase sliceName }}Actions.someAction())).toEqual<{{ properCase sliceName }}StateType>({
+      ...slice.initialState,
+    })
+  })
+})
